@@ -56,13 +56,13 @@ app.get('/FourTables', (req, res) => {
 });
 
 //insert data into customer
-app.get('/AddData', (req, res) => {
+app.post('/AddData', (req, res) => {
     let query = 'INSERT INTO customer (customer_id, fname, name, address) VALUES (1, John, Doe, 123 Main St)';
     pool.query(query, (err, result) =>{
         try {
-            res.status(200).json(result.rows);
+            res.status(200).send('new row added to customer');
         } catch (error) {
-            res.status(400).send("Error retrieving data.");
+            res.status(400).send("Error adding row data.");
         }
     });
 });
